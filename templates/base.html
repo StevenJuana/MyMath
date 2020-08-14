@@ -107,11 +107,11 @@
                   Division
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Beginner</a>
+                  <a class="dropdown-item" href="{{ url_for('division_problem', difficulty='Beginner') }}">Beginner</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Intermediate</a>
+                  <a class="dropdown-item" href="{{ url_for('division_problem', difficulty='Intermediate') }}">Intermediate</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Advanced</a>
+                  <a class="dropdown-item" href="{{ url_for('division_problem', difficulty='Advanced') }}">Advanced</a>
                 </div>
             </li>
             <li class="nav-item dropdown">

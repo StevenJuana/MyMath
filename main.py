@@ -70,6 +70,7 @@ def add_sub_mult_problem(problem_type: str, difficulty: str, num_numbers: str):
                          "difficulty": difficulty,
                          "num_numbers": num_numbers}
 
+        # Save this information in the session dictionary to reference once an answer is entered
         session["currentDict"] = question_dict
 
         # Render the appropriate HTML file depending on the number of numbers in the question
@@ -94,9 +95,14 @@ def division_problem(difficulty: str):
     quotient = int(value1/value2)
     remainder = value1 % value2
 
-    question_dict = {"quotient": quotient,
+    question_dict = {"value1": value1,
+                     "value2": value2,
+                     "quotient": quotient,
                      "remainder": remainder,
                      "difficulty": difficulty}
+
+    # Save this information in the session dictionary to reference once an answer is entered
+    session["currentDict"] = question_dict
 
     return render_template("divisionEquation.html", question_dict=question_dict)
 

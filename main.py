@@ -79,7 +79,7 @@ def add_sub_mult_problem(problem_type: str, difficulty: str, num_numbers: str):
             render_template("fourNumEquation.html", question_dict=question_dict)
 
 
-@app.route("/division/<difficulty>")
+@app.route("/Division/<difficulty>")
 def division_problem(difficulty: str):
     # If the user has just entered an answer submission, check the validity and correctness
     if request.method == 'POST':
@@ -93,18 +93,29 @@ def division_problem(difficulty: str):
 
             # Check to see if the answer the user submitted is valid, then check its correctness and
             # give the appropriate error message
-            '''
-            if given_answer != None and given_answer != "":
-                if given_answer.isnumeric() or (given_answer[0] == "-" and given_answer[1:].isnumeric()):
-                    if int(given_answer) == session["currentDict"]['answer']:
-                        flash('Correct Answer!')
+            if given_quotient != None and given_quotient != "":
+                if given_quotient.isnumeric():
+                    if int(given_quotient) == session["currentDict"]["quotientAnswer"]:
+                        if question_dict["difficulty"] != "Beginner":
+                            if given_remainder is None or given_remainder == "":
+                                flash('Please enter a remainder above')
+                            else:
+                                if given_remainder.isnumeric():
+                                    if int(given_remainder) == session["currentDict"]["remainderAnswer"]:
+                                        flash('Correct Answer!')
+                                    else:
+                                        flash('Incorrect, try again')
+                                else:
+                                    flash('Invalid Answer, Please Submit a Number')
+                        else:
+                            flash('Correct Answer!')
                     else:
                         flash('Incorrect, try again')
                 else:
                     flash('Invalid Answer, Please Submit a Number')
             else:
                 flash('Please Type Your Answer Above')
-            '''
+
         # Render the template show the screen shows the correct values
         return render_template("divisionBeginner.html", question_dict=question_dict) if difficulty == "Beginner" \
             else render_template("divisionInterAdvanced.html", question_dict=question_dict)
@@ -126,8 +137,9 @@ def division_problem(difficulty: str):
 
         question_dict = {"value1": value1,
                          "value2": value2,
-                         "quotient": quotient,
-                         "remainder": remainder,
+                         "quotientAnswer": quotient,
+                         "remainderAnswer": remainder,
+                         "sign": "/",
                          "heading": f"Division - {difficulty}",
                          "difficulty": difficulty}
 

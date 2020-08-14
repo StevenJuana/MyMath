@@ -19,4 +19,5 @@ def add_sub_mult_calc(values: list, problem_type: str) -> int:
 
 
 def is_prime(n):
+    """Returns if a number is a prime number or not"""
     return n > 1 and all(n % i for i in islice(count(2), int(sqrt(n)-1)))

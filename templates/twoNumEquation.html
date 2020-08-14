@@ -30,4 +30,17 @@ page layout for a problem -->
 <!-- Setting up the submission button -->
 {% block submission %}
 <h2 style= "text-align:center;">this is where the submission goes</h2>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages %}
+            <h2>{{msg}}</h2>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<form method="POST">
+    <input name="answer">
+    <input type="submit">
+</form>
 {% endblock %}

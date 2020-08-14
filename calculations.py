@@ -1,4 +1,5 @@
-from math import prod
+from math import prod, sqrt
+from itertools import count, islice
 
 
 def subtract_list(lst: list) -> int:
@@ -15,3 +16,7 @@ def add_sub_mult_calc(values: list, problem_type: str) -> int:
         return subtract_list(values)
     else:
         return prod(values)
+
+
+def is_prime(n):
+    return n > 1 and all(n % i for i in islice(count(2), int(sqrt(n)-1)))

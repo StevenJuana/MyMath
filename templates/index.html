@@ -49,7 +49,7 @@
                      Addition
                    </a>
                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                     <a class="dropdown-item" href="#">Beginner</a>
+                     <a class="dropdown-item" href="{{ url_for('twoNumEquation', problem_type='Addition', difficulty='Beginner') }}">Beginner</a>
                      <div class="dropdown-divider"></div>
                      <a class="dropdown-item" href="#">Intermediate</a>
                      <div class="dropdown-divider"></div>
@@ -77,7 +77,7 @@
                               <h2>Addition</h2>
                          </h4>
                          <ul>
-                              <li><a href="#">Beginner</a></li>
+                              <li><a href="{{ url_for('twoNumEquation', problem_type='Addition', difficulty='Beginner') }}">Beginner</a></li>
                               <li><a href="#">Intermediate</a></li>
                               <li><a href="#">Advanced</a></li>
                          </ul>

@@ -5,7 +5,6 @@ import calculations
 # Dictionary that holds values used to generate problems
 dv = dict(Beginner=[1, 10], Intermediate=[-25, 300], Advanced=[-300, 1000])
 
-
 # Creates a flask app
 app = Flask(__name__)
 
@@ -42,8 +41,8 @@ def add_sub_mult_problem(problem_type: str, difficulty: str, num_numbers: str):
 
         # Render the template show the screen shows the correct values
         return render_template("twoNumEquation.html", question_dict=question_dict) if num_numbers == "2" else \
-                    render_template("threeNumEquation.html", question_dict=question_dict) if num_numbers == "3" else \
-                    render_template("fourNumEquation.html", question_dict=question_dict)
+            render_template("threeNumEquation.html", question_dict=question_dict) if num_numbers == "3" else \
+            render_template("fourNumEquation.html", question_dict=question_dict)
 
     else:
         # Generates the values that will be used in the problem. These values vary depending
@@ -59,12 +58,12 @@ def add_sub_mult_problem(problem_type: str, difficulty: str, num_numbers: str):
         # Store all information needed to be displayed in a dictionary which will be passed
         # to the HTML file to use
         question_dict = {"values": values,
-                        "answer": answer,
-                        "sign": sign,
-                        "heading": f"{problem_type} - {difficulty}",
-                        "problem_type": problem_type,
-                        "difficulty": difficulty,
-                        "num_numbers": num_numbers}
+                         "answer": answer,
+                         "sign": sign,
+                         "heading": f"{problem_type} - {difficulty}",
+                         "problem_type": problem_type,
+                         "difficulty": difficulty,
+                         "num_numbers": num_numbers}
 
         session["currentDict"] = question_dict
 

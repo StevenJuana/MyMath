@@ -42,4 +42,6 @@ page layout for a problem -->
     <input name="answer">
     <input type="submit">
 </form>
+
+<a class="btn btn-primary" href="{{ url_for('add_sub_mult_problem', problem_type=question_dict['problem_type'], difficulty=question_dict['difficulty'], num_numbers=question_dict['num_numbers']) }}" role="button">Next Question</a>
 {% endblock %}

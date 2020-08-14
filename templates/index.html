@@ -122,9 +122,9 @@
                               <h2>Division</h2>
                          </h4>
                          <ul>
-                              <li><a href = "#">Beginner</a></li>
-                              <li><a href = "#">Intermediate</a></li>
-                              <li><a href = "#">Advanced</a></li>
+                              <li><a href = "{{ url_for('division_problem', difficulty='Beginner') }}">Beginner</a></li>
+                              <li><a href = "{{ url_for('division_problem', difficulty='Intermediate') }}">Intermediate</a></li>
+                              <li><a href = "{{ url_for('division_problem', difficulty='Advanced') }}">Advanced</a></li>
                          </ul>
                          </div>
                     </div>

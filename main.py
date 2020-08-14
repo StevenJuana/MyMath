@@ -33,11 +33,12 @@ def add_sub_mult_problem(problem_type: str, difficulty: str, num_numbers: str):
 
             # Check to see if the answer the user submitted is valid, then check its correctness and
             # give the appropriate error message
-            if given_answer != None and given_answer != "" and given_answer.isnumeric():
-                if int(given_answer) == session["currentDict"]['answer']:
-                    flash('Correct Answer!')
-                else:
-                    flash('Incorrect, try again')
+            if given_answer != None and given_answer != "":
+                if given_answer.isnumeric() or (given_answer[0] == "-" and given_answer[1:].isnumeric()):
+                    if int(given_answer) == session["currentDict"]['answer']:
+                        flash('Correct Answer!')
+                    else:
+                        flash('Incorrect, try again')
 
         # Render the template show the screen shows the correct values
         return render_template("twoNumEquation.html", question_dict=question_dict) if num_numbers == "2" else \

@@ -81,30 +81,61 @@ def add_sub_mult_problem(problem_type: str, difficulty: str, num_numbers: str):
 
 @app.route("/division/<difficulty>")
 def division_problem(difficulty: str):
-    if difficulty == "Beginner":
-        value1 = randint(10, 100)
-        while calculations.is_prime(value1):
-            value1 = randint(10, 100)
-        potential_values = list(filter(lambda x : (value1 % x == 0), [x for x in range(1, value1)]))
-        value2 = potential_values[randint(1, len(potential_values)-1)]
+    # If the user has just entered an answer submission, check the validity and correctness
+    if request.method == 'POST':
+        # Check if a problem has been asked in this current session... if so, get its details
+        if "currentDict" in session:
+            question_dict = session["currentDict"]
+
+            given_quotient = request.form["quotient"]
+            if question_dict["difficulty"] != "Beginner":
+                given_remainder = request.form["remainder"]
+
+            # Check to see if the answer the user submitted is valid, then check its correctness and
+            # give the appropriate error message
+            '''
+            if given_answer != None and given_answer != "":
+                if given_answer.isnumeric() or (given_answer[0] == "-" and given_answer[1:].isnumeric()):
+                    if int(given_answer) == session["currentDict"]['answer']:
+                        flash('Correct Answer!')
+                    else:
+                        flash('Incorrect, try again')
+                else:
+                    flash('Invalid Answer, Please Submit a Number')
+            else:
+                flash('Please Type Your Answer Above')
+            '''
+        # Render the template show the screen shows the correct values
+        return render_template("divisionBeginner.html", question_dict=question_dict) if difficulty == "Beginner" \
+            else render_template("divisionInterAdvanced.html", question_dict=question_dict)
 
     else:
-        value1 = randint(100, 999)
-        value2 = randint(2, 9) if difficulty == "Intermediate" else randint(10, 99)
+        if difficulty == "Beginner":
+            value1 = randint(10, 100)
+            while calculations.is_prime(value1):
+                value1 = randint(10, 100)
+            potential_values = list(filter(lambda x : (value1 % x == 0), [x for x in range(1, value1)]))
+            value2 = potential_values[randint(1, len(potential_values)-1)]
 
-    quotient = int(value1/value2)
-    remainder = value1 % value2
+        else:
+            value1 = randint(100, 999)
+            value2 = randint(2, 9) if difficulty == "Intermediate" else randint(10, 99)
 
-    question_dict = {"value1": value1,
-                     "value2": value2,
-                     "quotient": quotient,
-                     "remainder": remainder,
-                     "difficulty": difficulty}
+        quotient = int(value1/value2)
+        remainder = value1 % value2
 
-    # Save this information in the session dictionary to reference once an answer is entered
-    session["currentDict"] = question_dict
+        question_dict = {"value1": value1,
+                         "value2": value2,
+                         "quotient": quotient,
+                         "remainder": remainder,
+                         "heading": f"Division - {difficulty}",
+                         "difficulty": difficulty}
 
-    return render_template("divisionEquation.html", question_dict=question_dict)
+        # Save this information in the session dictionary to reference once an answer is entered
+        session["currentDict"] = question_dict
+
+        return render_template("divisionBeginner.html", question_dict=question_dict) if difficulty == "Beginner" \
+            else render_template("divisionInterAdvanced.html", question_dict=question_dict)
 
 
 if __name__ == "__main__":

@@ -2,6 +2,11 @@ from flask import Flask, redirect, url_for, render_template
 from random import randint
 import calculations
 
+# Dictionary that holds values used to generate problems
+dv = dict(Beginner=[1, 10], Intermediate=[-25, 300], Advanced=[-300, 1000])
+
+
+# Creates a flask app
 app = Flask(__name__)
 
 
@@ -25,12 +30,7 @@ def add_sub_mult_problem(problem_type: str, difficulty: str, num_numbers: str):
 
     # Generates the values that will be used in the problem. These values vary depending
     # on the difficulty of the question.
-    if difficulty == "Beginner":
-        values = sorted([randint(1, 10) for x in range(int(num_numbers))], reverse=True)
-    elif difficulty == "Intermediate":
-        values = sorted([randint(-25, 300) for x in range(int(num_numbers))], reverse=True)
-    else:
-        values = sorted([randint(-300, 1000) for x in range(int(num_numbers))], reverse=True)
+    values = sorted([randint(dv[difficulty][0], dv[difficulty][1]) for x in range(int(num_numbers))], reverse=True)
 
     # Finds the answer for the question
     answer = calculations.add_sub_mult_calc(values, problem_type)

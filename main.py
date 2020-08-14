@@ -8,6 +8,8 @@ dv = dict(Beginner=[1, 10], Intermediate=[-25, 300], Advanced=[-300, 1000])
 
 # Creates a flask app
 app = Flask(__name__)
+
+# Creates a secret key for the program
 app.secret_key = "GarudaHacks4Ever"
 
 

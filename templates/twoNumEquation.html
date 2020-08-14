@@ -22,27 +22,43 @@ page layout for a problem -->
 
 <!-- Setting up the actual problem view -->
 {% block equation %}
+<div style= "padding: 10px; margin-top:5%; margin-left: auto; margin-right:auto; margin-bottom: 5%;  width: 75%; text-align:center; height:400px; padding-bottom: 60px; padding-top:200px">
 
-<h1>{{question_dict["values"][0]}}  {{question_dict["sign"]}}  {{question_dict["values"][1]}} = {{question_dict["answer"]}}</h1>
+    <h1>{{question_dict["values"][0]}}  {{question_dict["sign"]}}  {{question_dict["values"][1]}} = {{question_dict["answer"]}}</h1>
 
+</div>
 {% endblock %}
 
 <!-- Setting up the submission button -->
 {% block submission %}
-<h2 style= "text-align:center;">this is where the submission goes</h2>
+
+<div style="width:50%; margin:auto; text-align:center;">
+    <form method="POST">
+        <div class="input-group mb-3">
+            <input name='answer' type="text" class="form-control" placeholder="Type you answer here" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+
+    <a style="margin-top:5%" class="btn btn-primary" href="{{ url_for('add_sub_mult_problem', problem_type=question_dict['problem_type'], difficulty=question_dict['difficulty'], num_numbers=question_dict['num_numbers']) }}" role="button">Next Question</a>
+</div>
 
 {% with messages = get_flashed_messages() %}
     {% if messages %}
         {% for msg in messages %}
-            <h2>{{msg}}</h2>
+            {% if msg == 'Correct Answer!'%}
+                <div style="margin-top: 4%; margin-left: auto; margin-right:auto; margin-bottom: auto; width: 50%;" class="alert alert-success" role="alert">
+                    {{msg}}
+                </div>
+            {% else %}
+                <div style="margin-top: 4%; margin-left: auto; margin-right:auto; margin-bottom: auto; width: 50%;" class="alert alert-danger" role="alert">
+                    {{msg}}
+                </div>
+            {% endif %}
         {% endfor %}
     {% endif %}
 {% endwith %}
 
-<form method="POST">
-    <input name="answer">
-    <input type="submit">
-</form>
-
-<a class="btn btn-primary" href="{{ url_for('add_sub_mult_problem', problem_type=question_dict['problem_type'], difficulty=question_dict['difficulty'], num_numbers=question_dict['num_numbers']) }}" role="button">Next Question</a>
 {% endblock %}

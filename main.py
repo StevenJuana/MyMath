@@ -35,7 +35,7 @@ def add_sub_mult_problem(problem_type: str, difficulty: str, num_numbers: str):
             # give the appropriate error message
             if given_answer != None and given_answer != "" and given_answer.isnumeric():
                 if int(given_answer) == session["currentDict"]['answer']:
-                    flash('Correct')
+                    flash('Correct Answer!')
                 else:
                     flash('Incorrect, try again')
 

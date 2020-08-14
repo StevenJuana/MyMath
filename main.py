@@ -79,7 +79,7 @@ def add_sub_mult_problem(problem_type: str, difficulty: str, num_numbers: str):
             render_template("fourNumEquation.html", question_dict=question_dict)
 
 
-@app.route("/Division/<difficulty>")
+@app.route("/Division/<difficulty>", methods=['GET', 'POST'])
 def division_problem(difficulty: str):
     # If the user has just entered an answer submission, check the validity and correctness
     if request.method == 'POST':

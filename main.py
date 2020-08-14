@@ -81,6 +81,9 @@ def add_sub_mult_problem(problem_type: str, difficulty: str, num_numbers: str):
 
 @app.route("/Division/<difficulty>", methods=['GET', 'POST'])
 def division_problem(difficulty: str):
+    """Generates a division problem. All relevant data about the question is sent to the
+    appropriate HTML file where it is rendered and shown to the user."""
+
     # If the user has just entered an answer submission, check the validity and correctness
     if request.method == 'POST':
         # Check if a problem has been asked in this current session... if so, get its details
@@ -121,6 +124,7 @@ def division_problem(difficulty: str):
             else render_template("divisionInterAdvanced.html", question_dict=question_dict)
 
     else:
+        # Select the appropriate values for the problem based on the difficulty
         if difficulty == "Beginner":
             value1 = randint(10, 100)
             while calculations.is_prime(value1):
@@ -132,9 +136,12 @@ def division_problem(difficulty: str):
             value1 = randint(100, 999)
             value2 = randint(2, 9) if difficulty == "Intermediate" else randint(10, 99)
 
+        # Calculate the quotient and remainder for the problem
         quotient = int(value1/value2)
         remainder = value1 % value2
 
+        # Store all information needed to be displayed in a dictionary which will be passed
+        # to the HTML file to use
         question_dict = {"value1": value1,
                          "value2": value2,
                          "quotientAnswer": quotient,
@@ -146,6 +153,7 @@ def division_problem(difficulty: str):
         # Save this information in the session dictionary to reference once an answer is entered
         session["currentDict"] = question_dict
 
+        # Render the appropriate HTML file depending on the difficulty of the question
         return render_template("divisionBeginner.html", question_dict=question_dict) if difficulty == "Beginner" \
             else render_template("divisionInterAdvanced.html", question_dict=question_dict)
 

@@ -17,7 +17,7 @@ def home():
 @app.route("/<problem_type>/<difficulty>/<num_numbers>")
 def add_sub_mult_problem(problem_type: str, difficulty: str, num_numbers: str):
     if difficulty == "Beginner":
-        values = sorted([randint(0, 10) for x in range(int(num_numbers))])
+        values = sorted([randint(0, 10) for x in range(int(num_numbers))], reverse=True)
     elif difficulty == "Intermediate":
         values = [randint(-25, 300) for x in range(int(num_numbers))]
     else:

@@ -1,6 +1,6 @@
 from flask import Flask, redirect, url_for, render_template, flash, request
 from random import randint
-from math import prod
+import calculations
 
 app = Flask(__name__)
 
@@ -28,14 +28,12 @@ def add_sub_mult_problem(problem_type: str, difficulty: str, num_numbers: str):
     if difficulty == "Beginner":
         values = sorted([randint(1, 10) for x in range(int(num_numbers))], reverse=True)
     elif difficulty == "Intermediate":
-        values = [randint(-25, 300) for x in range(int(num_numbers))]
+        values = sorted([randint(-25, 300) for x in range(int(num_numbers))], reverse=True)
     else:
-        values = [randint(-300, 1000) for x in range(int(num_numbers))]
+        values = sorted([randint(-300, 1000) for x in range(int(num_numbers))], reverse=True)
 
-    # Finds the answer for the question depending on if it is an addition, subtraction or
-    # multiplication problem.
-    answer = sum(values) if problem_type == "Addition" else subtract_list(values) \
-        if problem_type == "Subtraction" else prod(values)
+    # Finds the answer for the question
+    answer = calculations.add_sub_mult_calc(values, problem_type)
 
     # Sets the sign to a variable to use in the HTML file for formatting reasons
     sign = "+" if problem_type == "Addition" else "-" if problem_type == "Subtraction" else "*"

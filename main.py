@@ -47,13 +47,13 @@ def two_number_problem(problem_type: str, difficulty: str):
 
 
 @app.route("/<problem_type>/<difficulty>/<num_numbers>")
-def add_sub_mult_problem(problem_type: str, difficulty: str, num_numbers: int):
+def add_sub_mult_problem(problem_type: str, difficulty: str, num_numbers: str):
     if difficulty == "Beginner":
-        values = [randint(0, 10) for x in range(num_numbers)]
+        values = [randint(0, 10) for x in range(int(num_numbers))]
     elif difficulty == "Intermediate":
-        values = [randint(-25, 300) for x in range(num_numbers)]
+        values = [randint(-25, 300) for x in range(int(num_numbers))]
     else:
-        values = [randint(-300, 1000) for x in range(num_numbers)]
+        values = [randint(-300, 1000) for x in range(int(num_numbers))]
 
     answer = sum(values) if problem_type == "Addition" else subtract_list(values) if problem_type == "Subtraction" \
         else prod(values)
@@ -67,8 +67,8 @@ def add_sub_mult_problem(problem_type: str, difficulty: str, num_numbers: int):
                      "problem_type": problem_type,
                      "difficulty": difficulty}
 
-    return render_template("twoNumEquation.html", question_dict=question_dict) if num_numbers == 2 else \
-        render_template("threeNumEquation.html", question_dict=question_dict) if num_numbers == 3 else \
+    return render_template("twoNumEquation.html", question_dict=question_dict) if num_numbers == "2" else \
+        render_template("threeNumEquation.html", question_dict=question_dict) if num_numbers == "3" else \
         render_template("fourNumEquation.html", question_dict=question_dict)
 
 

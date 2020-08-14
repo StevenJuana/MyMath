@@ -39,6 +39,10 @@ def add_sub_mult_problem(problem_type: str, difficulty: str, num_numbers: str):
                         flash('Correct Answer!')
                     else:
                         flash('Incorrect, try again')
+                else:
+                    flash('Invalid Answer, Please Submit a Number')
+            else:
+                flash('Please Type Your Answer Above')
 
         # Render the template show the screen shows the correct values
         return render_template("twoNumEquation.html", question_dict=question_dict) if num_numbers == "2" else \

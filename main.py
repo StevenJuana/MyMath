@@ -74,5 +74,32 @@ def add_sub_mult_problem(problem_type: str, difficulty: str, num_numbers: str):
             render_template("fourNumEquation.html", question_dict=question_dict)
 
 
+@app.route("/division/<difficulty>")
+def division_problem(difficulty: str):
+    if difficulty == "Beginner":
+        value1 = randint(10,100)
+        while calculations.is_prime(value1):
+            value1 = randint(10,100)
+        potential_values = list(filter(lambda x : (value1 % x == 0), [x for x in range(1, value1)]))
+        value2 = potential_values[randint(1, len(potential_values)-1)]
+
+    elif difficulty == "Intermediate":
+        value1 = randint(100, 999)
+        value2 = randint(2, 9)
+
+    else:
+        value1 = randint(100, 999)
+        value2 = randint(10, 99)
+
+    quotient = int(value1/value2)
+    remainder = value1 % value2
+
+    question_dict = {"quotient": quotient,
+                     "remainder": remainder,
+                     "difficulty": difficulty}
+
+    return render_template("divisionEquation.html", question_dict=question_dict)
+
+
 if __name__ == "__main__":
     app.run(debug=True)

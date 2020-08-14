@@ -27,7 +27,9 @@
 
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading">Category - Difficulty</div>
+      <div class="sidebar-heading">
+          {% block category %}{% endblock %}
+      </div>
       <div class="list-group list-group-flush">
         {% block sidebar %}
         {% endblock %}

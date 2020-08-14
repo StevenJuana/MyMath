@@ -14,42 +14,10 @@ def home():
     return render_template("index.html")
 
 
-@app.route("/lessons/")
-def lessons():
-    return render_template("lessons.html")
-
-
-@app.route("/<problem_type>/<difficulty>/twoNumberProblem")
-def two_number_problem(problem_type: str, difficulty: str):
-    if difficulty == "Beginner":
-        value1 = randint(0, 10)
-        value2 = randint(0, value1 - 1) if problem_type == "Subtraction" else randint(0, 10)
-
-    elif difficulty == "Intermediate":
-        value1, value2 = randint(-25, 100), randint(-25, 100)
-
-    else:
-        value1, value2 = randint(-300, 1000), randint(-300, 1000)
-
-    answer = value1 + value2 if problem_type == "Addition" else value1 - value2 if problem_type == "Subtraction" \
-        else value1 * value2
-
-    sign = "+" if problem_type == "Addition" else "-" if problem_type == "Subtraction" else "*"
-
-    question_dict = {"value1": value1,
-                     "value2": value2,
-                     "answer": answer,
-                     "sign": sign,
-                     "heading": f"{problem_type} - {difficulty}",
-                     "problem_type": problem_type}
-
-    return render_template("twoNumEquation.html", question_dict=question_dict)
-
-
 @app.route("/<problem_type>/<difficulty>/<num_numbers>")
 def add_sub_mult_problem(problem_type: str, difficulty: str, num_numbers: str):
     if difficulty == "Beginner":
-        values = [randint(0, 10) for x in range(int(num_numbers))]
+        values = sorted([randint(0, 10) for x in range(int(num_numbers))])
     elif difficulty == "Intermediate":
         values = [randint(-25, 300) for x in range(int(num_numbers))]
     else:

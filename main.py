@@ -11,12 +11,6 @@ app = Flask(__name__)
 app.secret_key = "GarudaHacks4Ever"
 
 
-def subtract_list(lst: list):
-    """Returns the result of subtracting all of the values in
-    the given list"""
-    return lst[0] - sum(lst[1:])
-
-
 @app.route("/")
 def home():
     """Takes user to the home page"""
@@ -29,17 +23,22 @@ def add_sub_mult_problem(problem_type: str, difficulty: str, num_numbers: str):
     of 2,3 or 4 numbers. All relevant data about the question is sent to the
     appropriate HTML file where it is rendered and shown to the user."""
 
+    # If the user has just entered an answer submission, check the validity and correctness
     if request.method == 'POST':
+        # Check if a problem has been asked in this current session... if so, get its details
         if "currentDict" in session:
             question_dict = session["currentDict"]
-
             given_answer = request.form["answer"]
+
+            # Check to see if the answer the user submitted is valid, then check its correctness and
+            # give the appropriate error message
             if given_answer != None and given_answer != "" and given_answer.isnumeric():
                 if int(given_answer) == session["currentDict"]['answer']:
                     flash('Correct')
                 else:
                     flash('Incorrect, try again')
 
+        # Render the template show the screen shows the correct values
         return render_template("twoNumEquation.html", question_dict=question_dict) if num_numbers == "2" else \
                     render_template("threeNumEquation.html", question_dict=question_dict) if num_numbers == "3" else \
                     render_template("fourNumEquation.html", question_dict=question_dict)
@@ -62,7 +61,8 @@ def add_sub_mult_problem(problem_type: str, difficulty: str, num_numbers: str):
                         "sign": sign,
                         "heading": f"{problem_type} - {difficulty}",
                         "problem_type": problem_type,
-                        "difficulty": difficulty}
+                        "difficulty": difficulty,
+                        "num_numbers": num_numbers}
 
         session["currentDict"] = question_dict
 

@@ -34,13 +34,13 @@ def add_sub_mult_problem(problem_type: str, difficulty: str, num_numbers: str):
             question_dict = session["currentDict"]
 
             given_answer = request.form["answer"]
-            if given_answer != "" and given_answer.isnumeric():
+            if given_answer != None and given_answer != "" and given_answer.isnumeric():
                 if int(given_answer) == session["currentDict"]['answer']:
                     flash('Correct')
                 else:
                     flash('Incorrect, try again')
 
-                return render_template("twoNumEquation.html", question_dict=question_dict) if num_numbers == "2" else \
+        return render_template("twoNumEquation.html", question_dict=question_dict) if num_numbers == "2" else \
                     render_template("threeNumEquation.html", question_dict=question_dict) if num_numbers == "3" else \
                     render_template("fourNumEquation.html", question_dict=question_dict)
 

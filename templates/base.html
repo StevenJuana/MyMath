@@ -29,14 +29,19 @@
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">Category - Difficulty</div>
       <div class="list-group list-group-flush">
+        {% block sidebar %}
+        {% endblock %}
+        <!--
         <a href="#" class="list-group-item list-group-item-action bg-light">Exercise 1</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Exercise 2</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Exercise 3</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Exercise 4</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Exercise 5</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Exercise 6</a>
+        -->
       </div>
     </div>
+    
     <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
@@ -52,11 +57,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="{{url_for('home')}}">Home <span class="sr-only">(current)</span></a>
             </li>
+            <!--
             <li class="nav-item">
               <a class="nav-link" href="#">Link</a>
             </li>
+            -->
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Addition
@@ -69,14 +76,108 @@
                 <a class="dropdown-item" href="#">Advanced</a>
               </div>
             </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Subtraction
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Beginner</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Intermediate</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Advanced</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Multiplication
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Beginner</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Intermediate</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Advanced</a>
+            </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Division
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Beginner</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Intermediate</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Advanced</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Exponents & Logarithms
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Beginner</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Intermediate</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Advanced</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Basic Algebra
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Beginner</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Intermediate</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Advanced</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Geometry
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Beginner</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Intermediate</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Advanced</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Trigonometry
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Beginner</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Intermediate</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Advanced</a>
+                </div>
+            </li>
           </ul>
         </div>
       </nav>
 
       <div class="container-fluid">
-        <h1 class="mt-4">{% block content %}{% endblock %}</h1>
+          <!--
+        <h1 class="mt-4"></h1>
         <p>baa baa black sheep</p>
         <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
+        -->
+        <div>
+        {% block equation %}
+        {% endblock %}
+        </div>
+        <div>
+        {% block submission %}
+        {% endblock %}
+        </div>
       </div>
     </div>
     <!-- /#page-content-wrapper -->

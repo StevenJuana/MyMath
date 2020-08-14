@@ -1,0 +1,33 @@
+<!-- This HTML file, contains the an equation that uses two numbers
+for addition, subtraction and multiplication problems in the form of
+number1 (+,-,*) number2 (+,-,*) number3 = answer. -->
+
+<!-- Inheriting the side/top navigational bars as well as the general
+page layout for a problem -->
+{% extends "base.html" %}
+
+<!-- Use the passed through variables to set up the page title -->
+{% block title %}{{question_dict["heading"]}}{% endblock %}
+
+<!-- Use the passed through variables to show user the category and
+ difficulty in the top left corner of the web page-->
+{% block category %}{{question_dict["heading"]}}{% endblock %}
+
+<!-- Fill in the sidebar with applicable problem types -->
+{% block sidebar %}
+<a href="#" class="list-group-item list-group-item-action bg-light">{{question_dict["problem_type"]}} With Two Numbers</a>
+<a href="#" class="list-group-item list-group-item-action bg-light">{{question_dict["problem_type"]}} With Three Numbers</a>
+<a href="#" class="list-group-item list-group-item-action bg-light">{{question_dict["problem_type"]}} With Four Numbers</a>
+{% endblock %}
+
+<!-- Setting up the actual problem view -->
+{% block equation %}
+
+<h1>{{question_dict["value1"]}}  {{question_dict["sign"]}}  {{question_dict["value2"]}}  {{question_dict["sign"]}}  {{question_dict["value3"]}}</h1>
+
+{% endblock %}
+
+<!-- Setting up the submission button -->
+{% block submission %}
+<h2 style= "text-align:center;">this is where the submission goes</h2>
+{% endblock %}

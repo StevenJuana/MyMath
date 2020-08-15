@@ -23,6 +23,16 @@ page layout for a problem -->
 <!-- Setting up the actual problem view -->
 {% block equation %}
 <div style= "padding: 10px; margin-top:5%; margin-left: auto; margin-right:auto; margin-bottom: 5%;  width: 75%; text-align:center; height:300px; padding-bottom: 60px; padding-top:200px">
+    <div style='margin-top: -3.5%; margin-bottom: 4%;'>
+        {% if question_dict['problem_type'] == 'Addition' %}
+            <h2>Add the values below:</h2>
+        {% elif question_dict['problem_type'] == 'Subtraction' %}
+            <h2>Subtract the values below:</h2>
+        {% else %}
+            <h2>Multiply the values below:</h2>
+        {% endif %}
+    </div>
+    
     <h1>{{question_dict["values"][0]}}  {{question_dict["sign"]}}  {{question_dict["values"][1]}}  {{question_dict["sign"]}}  {{question_dict["values"][2]}}</h1>
 </div>
 {% endblock %}

@@ -22,6 +22,10 @@ page layout for a problem -->
 {% block equation %}
 <div style= "padding: 10px; margin-top:5%; margin-left: auto; margin-right:auto; margin-bottom: 5%;  width: 75%; text-align:center; height:300px; padding-bottom: 60px; padding-top:200px">
 
+    <div style='margin-top: -3.5%; margin-bottom: 4%;'>
+        <h2>Find the value for {{question_dict["variable"]}} in the equation below:</h2>
+    </div>
+
     <h1>{{question_dict["value1"]}}{{question_dict["variable"]}}  {{question_dict["sign"]}}  {{question_dict["value2"]}} = {{question_dict["value3"]}}</h1>
 
 </div>

@@ -8,6 +8,7 @@ from flask import Flask, render_template
 from addSubMult import addSubMult
 from division import division
 from algebra import algebra
+from geometry import geometry
 
 
 # Creates a flask app
@@ -17,6 +18,7 @@ app = Flask(__name__)
 app.register_blueprint(addSubMult, url_prefix="")
 app.register_blueprint(division, url_prefix="")
 app.register_blueprint(algebra, url_prefix="")
+app.register_blueprint(geometry, url_prefix="")
 
 # Creates a secret key for the program
 app.secret_key = "GarudaHacks4Ever"

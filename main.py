@@ -304,7 +304,7 @@ def convert_units():
             if given_answer != None and given_answer != "":
                 if given_answer.isnumeric() or (given_answer.count(".") == 1 and
                                                 all([x.isnumeric() for x in given_answer.split(".")])):
-                    if int(given_answer) == session["currentDict"]['answer']:
+                    if float(given_answer) == session["currentDict"]['answer']:
                         flash('Correct Answer!')
                     else:
                         flash('Incorrect, try again')

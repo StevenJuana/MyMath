@@ -37,7 +37,7 @@ def area(problem_type):
             return render_template("square.html", question_dict=question_dict)
         else:
             return render_template("rectangle.html", question_dict=question_dict)
-    
+
     else:
         if problem_type == "triangle":
             base = randint(10, 15)
@@ -70,7 +70,7 @@ def area(problem_type):
 
         elif problem_type == "rectangle":
             width = randint(2, 5)
-            length = (10, 15)
+            length = randint(10, 15)
             answer = width * length
 
             question_dict = dict(width=width, length=length, answer=answer,

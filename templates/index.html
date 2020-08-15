@@ -49,7 +49,7 @@
                      Addition
                    </a>
                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                     <a class="dropdown-item" href="{{ url_for('add_sub_mult_problem', problem_type='Addition', difficulty='Beginner', num_numbers='2') }}">Beginner</a>
+                     <a class="dropdown-item" href="{{ url_for('addSubMult.add_sub_mult_problem', problem_type='Addition', difficulty='Beginner', num_numbers='2') }}">Beginner</a>
                      <div class="dropdown-divider"></div>
                      <a class="dropdown-item" href="#">Intermediate</a>
                      <div class="dropdown-divider"></div>
@@ -78,9 +78,9 @@
                          </h4>
                          </div>
                          <div style="margin:auto; padding-bottom: 15%;">
-                              <a class="btn btn-outline-danger" href="{{ url_for('add_sub_mult_problem', problem_type='Addition', difficulty='Beginner', num_numbers='2') }}">Beginner</a>
-                              <a class="btn btn-outline-danger" href="{{ url_for('add_sub_mult_problem', problem_type='Addition', difficulty='Intermediate', num_numbers='2') }}">Intermediate</a>
-                              <a class="btn btn-outline-danger" href="{{ url_for('add_sub_mult_problem', problem_type='Addition', difficulty='Advanced', num_numbers='2') }}">Advanced</a>
+                              <a class="btn btn-outline-danger" href="{{ url_for('addSubMult.add_sub_mult_problem', problem_type='Addition', difficulty='Beginner', num_numbers='2') }}">Beginner</a>
+                              <a class="btn btn-outline-danger" href="{{ url_for('addSubMult.add_sub_mult_problem', problem_type='Addition', difficulty='Intermediate', num_numbers='2') }}">Intermediate</a>
+                              <a class="btn btn-outline-danger" href="{{ url_for('addSubMult.add_sub_mult_problem', problem_type='Addition', difficulty='Advanced', num_numbers='2') }}">Advanced</a>
                          </div>
                     </div>
                     </div>
@@ -93,9 +93,9 @@
                          </h4>
                          </div>
                          <div style="margin:auto; padding-bottom: 15%;">
-                              <a class="btn btn-outline-info" href ="{{ url_for('add_sub_mult_problem', problem_type='Subtraction', difficulty='Beginner', num_numbers='2') }}">Beginner</a>
-                              <a class="btn btn-outline-info" href ="{{ url_for('add_sub_mult_problem', problem_type='Subtraction', difficulty='Intermediate', num_numbers='2') }}">Intermediate</a>
-                              <a class="btn btn-outline-info" href ="{{ url_for('add_sub_mult_problem', problem_type='Subtraction', difficulty='Advanced', num_numbers='2') }}">Advanced</a>
+                              <a class="btn btn-outline-info" href ="{{ url_for('addSubMult.add_sub_mult_problem', problem_type='Subtraction', difficulty='Beginner', num_numbers='2') }}">Beginner</a>
+                              <a class="btn btn-outline-info" href ="{{ url_for('addSubMult.add_sub_mult_problem', problem_type='Subtraction', difficulty='Intermediate', num_numbers='2') }}">Intermediate</a>
+                              <a class="btn btn-outline-info" href ="{{ url_for('addSubMult.add_sub_mult_problem', problem_type='Subtraction', difficulty='Advanced', num_numbers='2') }}">Advanced</a>
                          </div>
                     </div>
                     </div>
@@ -108,9 +108,9 @@
                          </h4>
                          </div>
                          <div style="margin:auto; padding-bottom: 15%;">
-                              <a class="btn btn-outline-success" href = "{{ url_for('add_sub_mult_problem', problem_type='Multiplication', difficulty='Beginner', num_numbers='2') }}">Beginner</a>
-                              <a class="btn btn-outline-success" href = "{{ url_for('add_sub_mult_problem', problem_type='Multiplication', difficulty='Intermediate', num_numbers='2') }}">Intermediate</a>
-                              <a class="btn btn-outline-success" href = "{{ url_for('add_sub_mult_problem', problem_type='Multiplication', difficulty='Advanced', num_numbers='2') }}">Advanced</a>
+                              <a class="btn btn-outline-success" href = "{{ url_for('addSubMult.add_sub_mult_problem', problem_type='Multiplication', difficulty='Beginner', num_numbers='2') }}">Beginner</a>
+                              <a class="btn btn-outline-success" href = "{{ url_for('addSubMult.add_sub_mult_problem', problem_type='Multiplication', difficulty='Intermediate', num_numbers='2') }}">Intermediate</a>
+                              <a class="btn btn-outline-success" href = "{{ url_for('addSubMult.add_sub_mult_problem', problem_type='Multiplication', difficulty='Advanced', num_numbers='2') }}">Advanced</a>
                          </div>
                     </div>
                     </div>
@@ -123,9 +123,9 @@
                          </h4>
                          </div>
                          <div style="margin:auto; padding-bottom: 15%;">
-                              <a class="btn btn-outline-warning" href = "{{ url_for('division_problem', difficulty='Beginner') }}">Beginner</a>
-                              <a class="btn btn-outline-warning" href = "{{ url_for('division_problem', difficulty='Intermediate') }}">Intermediate</a>
-                              <a class="btn btn-outline-warning" href = "{{ url_for('division_problem', difficulty='Advanced') }}">Advanced</a>
+                              <a class="btn btn-outline-warning" href = "{{ url_for('division.division_problem', difficulty='Beginner') }}">Beginner</a>
+                              <a class="btn btn-outline-warning" href = "{{ url_for('division.division_problem', difficulty='Intermediate') }}">Intermediate</a>
+                              <a class="btn btn-outline-warning" href = "{{ url_for('division.division_problem', difficulty='Advanced') }}">Advanced</a>
                          </div>
                     </div>
                     </div>
@@ -139,11 +139,11 @@
                          </div>
                          <div style="margin:auto; padding-bottom: 15%;">
                               <div style="margin-left:-5%; margin-right:-5%; margin-bottom: -2%">
-                                   <a style="width:50%; margin-left: -1%; margin-bottom: -2%; margin-top: -10%;" class="btn btn-outline-secondary" href = "{{ url_for('basic_single_var') }}">Single Variable</a>
-                                   <a style="width:50%; margin-right: -1%; margin-bottom: -2%; margin-top: -10%;" class="btn btn-outline-secondary" href = "{{ url_for('inequalities') }}">Inequalities</a>
+                                   <a style="width:50%; margin-left: -1%; margin-bottom: -2%; margin-top: -10%;" class="btn btn-outline-secondary" href = "{{ url_for('algebra.basic_single_var') }}">Single Variable</a>
+                                   <a style="width:50%; margin-right: -1%; margin-bottom: -2%; margin-top: -10%;" class="btn btn-outline-secondary" href = "{{ url_for('algebra.inequalities') }}">Inequalities</a>
                               </div>
                               <div style="margin-left:-5%; margin-right:-5%">
-                                   <a style="width:50%; margin-left: -1%; margin-bottom: -10%;" class="btn btn-outline-secondary" href = "{{ url_for('convert_units') }}">Unit Conversion</a>
+                                   <a style="width:50%; margin-left: -1%; margin-bottom: -10%;" class="btn btn-outline-secondary" href = "{{ url_for('algebra.convert_units') }}">Unit Conversion</a>
                                    <a style="width:50%; margin-right: -1%; margin-bottom: -10%;"class="btn btn-outline-secondary" href = "#">Exponents, Logs</a>
                               </div>
                          </div>

@@ -13,9 +13,9 @@ page layout for a problem -->
 
 <!-- Fill in the sidebar with applicable problem types -->
 {% block sidebar %}
-<a href="{{ url_for('basic_single_var') }}" class="list-group-item list-group-item-action bg-light">Single Variable</a>
-<a href="{{ url_for('inequalities') }}" class="list-group-item list-group-item-action bg-light">Inequalities</a>
-<a href="{{ url_for('convert_units') }}" class="list-group-item list-group-item-action bg-light">Conversions</a>
+<a href="{{ url_for('algebra.basic_single_var') }}" class="list-group-item list-group-item-action bg-light">Single Variable</a>
+<a href="{{ url_for('algebra.inequalities') }}" class="list-group-item list-group-item-action bg-light">Inequalities</a>
+<a href="{{ url_for('algebra.convert_units') }}" class="list-group-item list-group-item-action bg-light">Conversions</a>
 {% endblock %}
 
 <!-- Setting up the actual problem view -->
@@ -46,7 +46,7 @@ page layout for a problem -->
         </div>
     </form>
 
-    <a style="margin-top:5%" class="btn btn-primary" href="{{ url_for('convert_units') }}" role="button">Next Question</a>
+    <a style="margin-top:5%" class="btn btn-primary" href="{{ url_for('algebra.convert_units') }}" role="button">Next Question</a>
 </div>
 
 {% with messages = get_flashed_messages() %}

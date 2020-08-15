@@ -18,6 +18,28 @@ app = Flask(__name__)
 app.secret_key = "GarudaHacks4Ever"
 
 
+def post_flash():
+    """Checks the users answer and gives an appropriate message"""
+
+    # Check if a problem has been asked in this current session... if so, get its details
+    if "currentDict" in session:
+        question_dict = session["currentDict"]
+        given_answer = request.form["answer"]
+
+        # Check to see if the answer the user submitted is valid, then check its correctness and
+        # give the appropriate error message
+        if given_answer != None and given_answer != "":
+            if given_answer.isnumeric() or (given_answer[0] == "-" and given_answer[1:].isnumeric()):
+                if int(given_answer) == session["currentDict"]['answer']:
+                    flash('Correct Answer!')
+                else:
+                    flash('Incorrect, try again')
+            else:
+                flash('Invalid Answer, Please Submit a Number')
+        else:
+            flash('Please Type Your Answer Above')
+
+
 @app.route("/")
 def home():
     """Takes user to the home page"""
@@ -273,24 +295,8 @@ def inequalities():
 def convert_units():
     # If the user has just entered an answer submission, check the validity and correctness
     if request.method == 'POST':
-        # Check if a problem has been asked in this current session... if so, get its details
-        if "currentDict" in session:
-            question_dict = session["currentDict"]
-            given_answer = request.form["answer"]
-
-            # Check to see if the answer the user submitted is valid, then check its correctness and
-            # give the appropriate error message
-            if given_answer != None and given_answer != "":
-                if given_answer.isnumeric():
-                    if int(given_answer) == session["currentDict"]["answer"]:
-                        flash('Correct Answer!')
-                    else:
-                        flash('Incorrect, try again')
-                else:
-                    flash('Invalid Answer, Please Submit a Number')
-            else:
-                flash('Please Type Your Answer Above')
-
+        post_flash()
+        
         # Render the template show the screen shows the correct values
         return render_template("algebraConversions.html", question_dict=question_dict)
 

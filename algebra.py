@@ -217,7 +217,7 @@ def convert_units():
         else:
             amt_unit1 = randint(50, 100)
 
-        # Calculate the conversion
+        # Calculate the conversion using the conversion dictionary from "conversions.py"
         answer = round(amt_unit1 * conversion_dict[unit1][unit2], 2)
 
         # Save all of the relevant information in a dictionary to pass through to the HTML file
@@ -237,6 +237,7 @@ def exponents_logs():
     Generates a problem dealing with either exponents or logarithms in the form of
     value1**x = value2, value1**value2 = x, logbasevalue1(value1**x) = x
     """
+
     # If the user has just entered an answer submission, check the validity and correctness
     if request.method == 'POST':
         # Check if a problem has been asked in this current session... if so, get its details
@@ -265,6 +266,7 @@ def exponents_logs():
             render_template("logarithm.html", question_dict=question_dict)
 
     else:
+        # Choose a question type, where 0-1 is exponent questions and 2 is a log question
         question_type = randint(0, 2)
 
         if question_type == 0:

@@ -215,7 +215,6 @@ def surface_area(problem_type):
         elif problem_type == "cylinder":
             radius = randint(2, 10)
             height = randint(10, 15)
-
             answer = round(((2 * math.pi * radius * height) + (2 * math.pi * (radius**2))), 2)
 
             question_dict = dict(radius=radius, height=height, answer=answer,

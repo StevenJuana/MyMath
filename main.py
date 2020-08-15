@@ -6,6 +6,7 @@
 from flask import Flask, redirect, url_for, render_template, flash, request, session
 from random import randint
 import calculations
+from conversions import conversion_dict, conversion_types
 
 # Dictionary that holds values used to generate problems
 dv = dict(Beginner=[1, 10], Intermediate=[-25, 300], Advanced=[-300, 1000])
@@ -67,13 +68,8 @@ def add_sub_mult_problem(problem_type: str, difficulty: str, num_numbers: str):
 
         # Store all information needed to be displayed in a dictionary which will be passed
         # to the HTML file to use
-        question_dict = {"values": values,
-                         "answer": answer,
-                         "sign": sign,
-                         "heading": f"{problem_type} - {difficulty}",
-                         "problem_type": problem_type,
-                         "difficulty": difficulty,
-                         "num_numbers": num_numbers}
+        question_dict = dict(values=values, answer=answer, sign=sign, heading=f"{problem_type} - {difficulty}",
+                             problem_type=problem_type, difficulty=difficulty, num_numbers=num_numbers)
 
         # Save this information in the session dictionary to reference once an answer is entered
         session["currentDict"] = question_dict
@@ -147,13 +143,8 @@ def division_problem(difficulty: str):
 
         # Store all information needed to be displayed in a dictionary which will be passed
         # to the HTML file to use
-        question_dict = {"value1": value1,
-                         "value2": value2,
-                         "quotientAnswer": quotient,
-                         "remainderAnswer": remainder,
-                         "sign": "/",
-                         "heading": f"Division - {difficulty}",
-                         "difficulty": difficulty}
+        question_dict = dict(value1=value1, value2=value2, quotientAnswer=quotient, remainderAnswer=remainder, sign="/",
+                             heading=f"Division - {difficulty}", difficulty=difficulty)
 
         # Save this information in the session dictionary to reference once an answer is entered
         session["currentDict"] = question_dict
@@ -230,14 +221,8 @@ def basic_single_var():
         potential_vars = ["x", "y", "z"]
         variable = potential_vars[randint(0, len(potential_vars)-1)]
 
-        question_dict = {"value1": value1,
-                         "value2": value2,
-                         "value3": value3,
-                         "answer": answer,
-                         "sign": sign,
-                         "heading": f"Algebra -\nSingle Variable",
-                         "variable": variable,
-                         "problem_type": problem_type}
+        question_dict = dict(value1=value1, value2=value2, value3=value3, answer=answer, sign=sign,
+                             heading=f"Algebra -\nSingle Variable", variable=variable, problem_type=problem_type)
 
         # Save this information in the session dictionary to reference once an answer is entered
         session["currentDict"] = question_dict
@@ -276,14 +261,39 @@ def inequalities():
         value2 = randint(0, 1000)
         answer = ">" if value1 > value2 else "<" if value1 < value2 else "="
 
-        question_dict = {"value1": value1,
-                         "value2": value2,
-                         "answer": answer,
-                         "heading": "Algebra - Inequalities"}
+        question_dict = dict(value1=value1, value2=value2, answer=answer, heading="Algebra - Inequalities")
+
         # Save this information in the session dictionary to reference once an answer is entered
         session["currentDict"] = question_dict
 
         return render_template("algebraInequalities.html", question_dict=question_dict)
+
+
+@app.route("/BasicAlgebra/Units", methods=['GET', 'POST'])
+def convert_units():
+    type_units = list(conversion_types.keys())[randint(0, 2)]
+
+    unit1 = conversion_types[type_units][randint(0, 3)]
+
+    unit2 = conversion_types[type_units][randint(0, 3)]
+    while unit2 == unit1:
+        unit2 = conversion_types[type_units][randint(0, 3)]
+
+    if unit1 == "feet" or unit1 == "inch":
+        amt_unit1 = randint(1000, 2000)
+    elif unit1 == "gram":
+        amt_unit1 = randint(500, 1000)
+    elif unit1 == "kilometers":
+        amt_unit1 = randint(2, 5)
+    else:
+        amt_unit1 = randint(50, 100)
+
+    answer = round(amt_unit1 * conversion_dict[unit1][unit2], 2)
+
+    question_dict = dict(unit1=unit1, unit2=unit2, amt_unit1=amt_unit1, answer=answer,
+                         heading="Algebra - Unit Conversion")
+
+    return render_template("algebraConversions.html", question_dict=question_dict)
 
 
 if __name__ == "__main__":

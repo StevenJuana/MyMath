@@ -190,8 +190,9 @@ def basic_single_var():
                 flash('Please Type Your Answer Above')
 
         # Render the template show the screen shows the correct values
-        return render_template("algebraSingleVariable1.html", question_dict=question_dict) if session["problem_type"] \
-            in [0, 1] else render_template("algebraSingleVariable2.html", question_dict=question_dict)
+        return render_template("algebraSingleVariable1.html", question_dict=question_dict) if \
+            session["currentDict"]["problem_type"] in [0, 1] else \
+            render_template("algebraSingleVariable2.html", question_dict=question_dict)
 
     else:
         problem_type = randint(0, 3)

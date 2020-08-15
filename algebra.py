@@ -188,13 +188,13 @@ def exponents_logs():
             # Check to see if the answer the user submitted is valid, then check its correctness and
             # give the appropriate error message
             if given_answer != None and given_answer != "":
-                if not given_answer.isnumeric():
-                    if given_answer == session["currentDict"]["answer"]:
+                if given_answer.isnumeric():
+                    if int(given_answer) == session["currentDict"]["answer"]:
                         flash('Correct Answer!')
                     else:
                         flash('Incorrect, try again')
                 else:
-                    flash("Invalid Answer, Please Enter Either '>', '<', or '='")
+                    flash('Invalid Answer, Please Submit a Number')
             else:
                 flash('Please Type Your Answer Above')
 

@@ -1,0 +1,72 @@
+<!-- This HTML file,  -->
+
+<!-- Inheriting the side/top navigational bars as well as the general
+page layout for a problem -->
+{% extends "base.html" %}
+
+<!-- Use the passed through variables to set up the page title -->
+{% block title %}{{question_dict["heading"]}}{% endblock %}
+
+<!-- Use the passed through variables to show user the category and
+ difficulty in the top left corner of the web page-->
+{% block category %}{{question_dict["heading"]}}{% endblock %}
+
+<!-- Fill in the sidebar with applicable problem types -->
+{% block sidebar %}
+<a href="{{ url_for('geometry.volume', problem_type='cube')}}" class="list-group-item list-group-item-action bg-light">Cube</a>
+<a href="{{ url_for('geometry.volume', problem_type='pyramid')}}" class="list-group-item list-group-item-action bg-light">Pyramid</a>
+<a href="{{ url_for('geometry.volume', problem_type='cylinder')}}" class="list-group-item list-group-item-action bg-light">Cylinder</a>
+<a href="{{ url_for('geometry.volume', problem_type='sphere')}}" class="list-group-item list-group-item-action bg-light">Sphere</a>
+{% endblock %}
+
+<!-- Setting up the actual problem view -->
+{% block equation %}
+<div style= "padding: 10px; margin-top:-5%; margin-left: auto; margin-right:auto; margin-bottom: 25%;  width: 75%; text-align:center; height:300px; padding-bottom: 60px; padding-top:200px">
+
+    <div style='margin-top: -3.5%; margin-bottom: 4%;'>
+        <h2>Find the volume of the pyramid below if l = {{question_dict['length']}}, w = {{question_dict['width']}}, and h = {{question_dict['height']}}:</h2>
+        <h4>(round to two decimal places)</h4>
+    </div>
+
+    <img src="{{ url_for('static', filename='images/pyramid.png') }}">
+
+</div>
+{% endblock %}
+
+<!-- Setting up the submission button -->
+{% block submission %}
+
+<div style="width:30%; margin:auto; text-align:center;">
+    <form method="POST">
+        <div class="input-group mb-3">
+            <input name='answer' autocomplete="off" type="text" class="form-control" placeholder="Volume =" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+
+    <a style="margin-top:5%" class="btn btn-primary" href="{{ url_for('geometry.volume', problem_type='pyramid')}}" role="button">Next Question</a>
+</div>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages %}
+            {% if msg == 'Correct Answer!'%}
+                <div style="margin-top: 4%; margin-left: auto; margin-right:auto; margin-bottom: auto; width: 30%;" class="alert alert-success" role="alert">
+                    {{msg}}
+                </div>
+            {% elif msg == 'Incorrect, try again'%}
+                <div style="margin-top: 4%; margin-left: auto; margin-right:auto; margin-bottom: auto; width: 30%;" class="alert alert-danger" role="alert">
+                    {{msg}}
+                </div>
+            {% else %}
+                <div style="margin-top: 4%; margin-left: auto; margin-right:auto; margin-bottom: auto; width: 30%;" class="alert alert-warning" role="alert">
+                    {{msg}}
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+{% endblock %}

@@ -11,7 +11,7 @@ def area(problem_type):
         height = randint(2, 8)
         answer = ((base * height) / 2)
 
-        question_dict = dict(base=base, height=height, answer=answer, heading="Geometry - Triangle")
+        question_dict = dict(base=base, height=height, answer=answer, heading="Geometry - Area")
         session["currentDict"] = question_dict
 
         return render_template("triangle.html", question_dict=question_dict)
@@ -20,7 +20,13 @@ def area(problem_type):
         pass
 
     elif problem_type == "square":
-        pass
+        side = randint(2, 12)
+        answer = side * side
+
+        question_dict = dict(side=side, answer=answer, heading="Geometry - Area")
+        session["currentDict"] = question_dict
+
+        return render_template("square.html", question_dict=question_dict)
 
     elif problem_type == "rectangle":
         pass

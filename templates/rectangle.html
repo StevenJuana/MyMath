@@ -24,11 +24,10 @@ page layout for a problem -->
 <div style= "padding: 10px; margin-top:0%; margin-left: auto; margin-right:auto; margin-bottom: 25%;  width: 75%; text-align:center; height:300px; padding-bottom: 60px; padding-top:200px">
 
     <div style='margin-top: -3.5%; margin-bottom: 4%;'>
-        <h2>Find the area of the circle below if r = {{question_dict['radius']}}:</h2>
-        <h4>(round to two decimal places)</h4>
+        <h2>Find the area of the rectangle below if l = {{question_dict['length']}} and w = {{question_dict['width']}}:</h2>
     </div>
 
-    <img src="{{ url_for('static', filename='images/circle3.png') }}">
+    <img src="{{ url_for('static', filename='images/rectangle.png') }}">
 
 </div>
 {% endblock %}
@@ -46,7 +45,7 @@ page layout for a problem -->
         </div>
     </form>
 
-    <a style="margin-top:5%" class="btn btn-primary" href="{{ url_for('geometry.area', problem_type='circle')}}" role="button">Next Question</a>
+    <a style="margin-top:5%" class="btn btn-primary" href="{{ url_for('geometry.area', problem_type='rectangle')}}" role="button">Next Question</a>
 </div>
 
 {% with messages = get_flashed_messages() %}

@@ -14,7 +14,7 @@ page layout for a problem -->
 <!-- Fill in the sidebar with applicable problem types -->
 {% block sidebar %}
 <a href="{{ url_for('basic_single_var') }}" class="list-group-item list-group-item-action bg-light">Single Variable</a>
-<a href="{{ url_for('division_problem', difficulty='Intermediate') }}" class="list-group-item list-group-item-action bg-light">{{question_dict["problem_type"]}} Intermediate</a>
+<a href="{{ url_for('inequalities') }}" class="list-group-item list-group-item-action bg-light">Inequalities</a>
 <a href="{{ url_for('division_problem', difficulty='Advanced') }}" class="list-group-item list-group-item-action bg-light">{{question_dict["problem_type"]}} Advanced</a>
 {% endblock %}
 

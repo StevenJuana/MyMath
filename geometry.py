@@ -275,7 +275,7 @@ def circle_properties(problem_type):
 
         elif problem_type == "circumference":
             radius = randint(2, 10)
-            answer = 2 * radius * math.pi
+            answer = round((2 * radius * math.pi), 2)
 
             question_dict = dict(radius=radius, answer=answer,
                                  heading="Geometry - Circles", problem_type=problem_type)

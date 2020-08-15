@@ -23,10 +23,10 @@ page layout for a problem -->
 <div style= "padding: 10px; margin-top:5%; margin-left: auto; margin-right:auto; margin-bottom: 5%;  width: 75%; text-align:center; height:300px; padding-bottom: 60px; padding-top:200px">
 
     <div style='margin-top: -3.5%; margin-bottom: 4%;'>
-        <h2>Find the value for {{question_dict["variable"]}} in the equation below:</h2>
+        <h2>Use =, &#60;, or &#62; to complete the inequality below:</h2>
     </div>
 
-    <h1>{{question_dict["value1"]}}{{question_dict["variable"]}}  {{question_dict["sign"]}}  {{question_dict["value2"]}} = {{question_dict["value3"]}}</h1>
+    <h1>{{question_dict["value1"]}}   &#95;&#95;&#95;   {{question_dict["value2"]}}</h1>
 
 </div>
 {% endblock %}
@@ -37,14 +37,15 @@ page layout for a problem -->
 <div style="width:30%; margin:auto; text-align:center;">
     <form method="POST">
         <div class="input-group mb-3">
-            <input name='answer' autocomplete="off" type="text" class="form-control" placeholder="{{question_dict['variable']}} = " aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <input name='answer' autocomplete="off" type="text" class="form-control" placeholder="=, &#60;, or &#62;" aria-label="Recipient's username" aria-describedby="basic-addon2">
             <div class="input-group-append">
             <button class="btn btn-outline-secondary" type="submit">Submit</button>
+            <a class="btn btn-outline-secondary" href="http://www-eng.lbl.gov/~shuman/NEXT/GAS_SYS/CCST-Conversions-document.pdf" role="button">Conversion Table</a>
             </div>
         </div>
     </form>
 
-    <a style="margin-top:5%" class="btn btn-primary" href="{{ url_for('basic_single_var') }}" role="button">Next Question</a>
+    <a style="margin-top:5%" class="btn btn-primary" href="{{ url_for('inequalities') }}" role="button">Next Question</a>
 </div>
 
 {% with messages = get_flashed_messages() %}

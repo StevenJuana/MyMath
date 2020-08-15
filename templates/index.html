@@ -30,7 +30,7 @@
          <div id="page-content-wrapper">
      
            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-             <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+             <!--<button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>-->
      
              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
@@ -151,7 +151,6 @@
                                    <li><a href = "{{ url_for('inequalities') }}">Inequalities</a></li>
                               </ul>
                               <ul style="float: right;">
-                                   <li><a href = "#">Quad. Formula</a></li>
                                    <li><a href = "#">Unit Conversion</a></li>
                                    <li><a href = "#">Exponents, Logs</a></li>
                               </ul>
@@ -168,12 +167,14 @@
                          </h4>
                          </div>
                          <div style="margin:auto">
-                         <ul>
-                              <li><a href = "#">Area</a></li>
-                              <li><a href = "#">Volume</a></li>
-                              <li><a href = "#">Surface Area</a></li>
-                              <li><a href = "#">Circle Properties</a></li>
-                         </ul>
+                              <ul style="float: left;">
+                                   <li><a href = "#">Area</a></li>
+                                   <li><a href = "#">Volume</a></li>
+                              </ul>
+                              <ul style="float: right;">
+                                   <li><a href = "#">Surface Area</a></li>
+                                   <li><a href = "#">Circle Properties</a></li>
+                              </ul>
                          </div>
                     </div>
                     </div>
@@ -198,6 +199,7 @@
                     <!-- /.row -->
                
                     <!-- Pagination -->
+                    <!--
                     <ul class="pagination justify-content-center">
                     <li class="page-item">
                     <a class="page-link" href="#" aria-label="Previous">
@@ -221,7 +223,7 @@
                          </a>
                     </li>
                     </ul>
-               
+                    -->
                </div>
                <!-- /.container -->
            </div>

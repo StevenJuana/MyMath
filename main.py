@@ -246,7 +246,7 @@ def basic_single_var():
             else render_template("algebraSingleVariable2.html", question_dict=question_dict)
 
 
-@app.route("BasicAlgebra/Inequalities")
+@app.route("BasicAlgebra/Inequalities", methods=['GET', 'POST'])
 def inequalities():
     # If the user has just entered an answer submission, check the validity and correctness
     if request.method == 'POST':

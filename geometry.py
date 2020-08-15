@@ -204,7 +204,7 @@ def surface_area(problem_type):
         elif problem_type == "cone":
             radius = randint(2, 7)
             height = randint(9, 15)
-            answer = round(((math.pi * radius) * (radius + math.sqrt((height**2)*(radius**2)))), 2)
+            answer = round(((math.pi * radius) * (radius + math.sqrt((height**2) + (radius**2)))), 2)
 
             question_dict = dict(radius=radius, height=height, answer=answer,
                                  heading="Geometry - Surfaces", problem_type=problem_type)

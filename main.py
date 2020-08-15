@@ -23,7 +23,6 @@ def post_flash():
 
     # Check if a problem has been asked in this current session... if so, get its details
     if "currentDict" in session:
-        question_dict = session["currentDict"]
         given_answer = request.form["answer"]
 
         # Check to see if the answer the user submitted is valid, then check its correctness and
@@ -295,8 +294,10 @@ def inequalities():
 def convert_units():
     # If the user has just entered an answer submission, check the validity and correctness
     if request.method == 'POST':
-        post_flash()
+        question_dict = session["currentDict"]
         
+        post_flash()
+
         # Render the template show the screen shows the correct values
         return render_template("algebraConversions.html", question_dict=question_dict)
 

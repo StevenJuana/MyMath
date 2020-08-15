@@ -219,7 +219,7 @@ def exponents_logs():
         else:
             value1, answer = randint(2, 10), randint(2, 15)
 
-        question_dict = dict(value1=value1, value2=value2, answer=answer, heading="Algebra - Exponents and Logarithms",
+        question_dict = dict(value1=value1, value2=value2, answer=answer, heading="Algebra - Exp/Logs",
                              question_type=question_type) if question_type in [0, 1] \
                         else dict(value1=value1, answer=answer, question_type=question_type)
 

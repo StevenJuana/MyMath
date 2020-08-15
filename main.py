@@ -163,5 +163,57 @@ def division_problem(difficulty: str):
             else render_template("divisionInterAdvanced.html", question_dict=question_dict)
 
 
+@app.route("/BasicAlgebra/SingleVariableEquation")
+def basic_single_var():
+    """Generates a single variable equation algebra problem. This can take a few forms:
+    value1*x + value2 = value3, value1*x - value2 = value3, value1*x + value3 = -value2*x,
+    or value1*x - value3 = value2*x"""
+    problem_type = randint(0, 3)
+
+    if problem_type in [0, 1]:
+        value1 = randint(5, 99)
+
+        while calculations.is_prime(value1):
+            value1 = randint(5, 99)
+
+        value2 = randint(5, 99) if problem_type == 0 else randint(5, value1 - 1)
+        value3 = value1 + value2 if problem_type == 0 else value1 - value2
+
+        potential_vars = list(filter(lambda x: (value1 % x == 0), [x for x in range(1, value1)]))
+        answer = potential_vars[randint(0, len(potential_vars) - 1)]
+
+        value1 = int(value1 / answer)
+        sign = "+" if problem_type == 0 else "-"
+
+        #print(value1, " * ", answer, sign, value2, "  = ", value3)
+
+    else:
+        value1 = randint(2, 10)
+        value2 = randint(1, 10) if problem_type == 2 else randint(1, value1 - 1)
+
+        temp_combination = value1 + value2 if problem_type == 2 else value1 - value2
+
+        answer = randint(1, 10)
+
+        value2 = -value2 if problem_type == 2 else value2
+        value3 = answer * temp_combination if problem_type == 2 else -answer * temp_combination
+        answer = -answer if problem_type == 2 else answer
+
+        sign = "+" if problem_type == 2 else "-"
+        value3 = abs(value3)
+
+        #print(value1, "x ", value3, " = ", value2, "x", "    x = ", answer)
+
+    question_dict = {"value1": value1,
+                     "value2": value2,
+                     "value3": value3,
+                     "answer": answer,
+                     "sign": sign,
+                     "heading": f"Algebra - Single Variable Equations"}
+
+    return render_template("algebraSingleVariable1.html", question_dict=question_dict) if problem_type in [0, 1] \
+        else render_template("algebraSingleVariable2.html", question_dict=question_dict)
+
+
 if __name__ == "__main__":
     app.run(debug=True)

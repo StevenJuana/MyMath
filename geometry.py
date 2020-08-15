@@ -4,7 +4,7 @@ from random import randint
 geometry = Blueprint("geometry", __name__, static_folder="static", template_folder="templates")
 
 
-@geometry.route("/Geometry/<problem_type>")
+@geometry.route("/Geometry/<problem_type>", methods=['GET', 'POST'])
 def area(problem_type):
     def triangle():
         base = randint(10, 15)
@@ -14,7 +14,7 @@ def area(problem_type):
         question_dict = dict(base=base, height=height, answer=answer)
         session["currentDict"] = question_dict
 
-        return render_template("triangle.html", question_dict)
+        return render_template("triangle.html", question_dict=question_dict)
 
     def circle():
         pass

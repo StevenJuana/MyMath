@@ -13,6 +13,7 @@ from algebra import algebra
 # Creates a flask app
 app = Flask(__name__)
 
+# Register the blueprints for the related modules
 app.register_blueprint(addSubMult, url_prefix="")
 app.register_blueprint(division, url_prefix="")
 app.register_blueprint(algebra, url_prefix="")

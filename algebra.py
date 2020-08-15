@@ -6,7 +6,7 @@ import calculations
 algebra = Blueprint("algebra", __name__, static_folder="static", template_folder="templates")
 
 
-@algebra.route("/BasicAlgebra/SingleVariableEquation",  methods=['GET', 'POST'])
+@algebra.route("/BasicAlgebra/SingleVariableEquation", methods=['GET', 'POST'])
 def basic_single_var():
     """Generates a single variable equation algebra problem. This can take a few forms:
     value1*x + value2 = value3, value1*x - value2 = value3, value1*x + value3 = -value2*x,
@@ -71,7 +71,7 @@ def basic_single_var():
             value3 = abs(value3)
 
         potential_vars = ["x", "y", "z"]
-        variable = potential_vars[randint(0, len(potential_vars)-1)]
+        variable = potential_vars[randint(0, len(potential_vars) - 1)]
 
         question_dict = dict(value1=value1, value2=value2, value3=value3, answer=answer, sign=sign,
                              heading=f"Algebra -\nSingle Variable", variable=variable, problem_type=problem_type)
@@ -174,3 +174,58 @@ def convert_units():
         session["currentDict"] = question_dict
 
         return render_template("algebraConversions.html", question_dict=question_dict)
+
+
+@algebra.route("/BasicAlgebra/ExponentsAndLogarithms")
+def exponents_logs():
+    # If the user has just entered an answer submission, check the validity and correctness
+    if request.method == 'POST':
+        # Check if a problem has been asked in this current session... if so, get its details
+        if "currentDict" in session:
+            question_dict = session["currentDict"]
+            given_answer = request.form["answer"]
+
+            # Check to see if the answer the user submitted is valid, then check its correctness and
+            # give the appropriate error message
+            if given_answer != None and given_answer != "":
+                if not given_answer.isnumeric():
+                    if given_answer == session["currentDict"]["answer"]:
+                        flash('Correct Answer!')
+                    else:
+                        flash('Incorrect, try again')
+                else:
+                    flash("Invalid Answer, Please Enter Either '>', '<', or '='")
+            else:
+                flash('Please Type Your Answer Above')
+
+        # Render the template show the screen shows the correct values
+        return render_template("exponent1.html", question_dict=question_dict) if \
+            session["currentDict"]["question_type"] == 0 else \
+            render_template("exponent2.html", question_dict=question_dict) if \
+            session["currentDict"]["question_type"] == 1 else \
+            render_template("logarithm.html", question_dict=question_dict)
+
+    else:
+        question_type = randint(0, 2)
+
+        if question_type == 0:
+            value1, value2 = randint(1, 10), randint(1, 3)
+            answer = value1 ** value2
+
+        elif question_type == 1:
+            value1, answer = randint(1, 10), randint(1, 3)
+            value2 = value1 ** answer
+
+        else:
+            value1, answer = randint(2, 10), randint(2, 15)
+
+        question_dict = dict(value1=value1, value2=value2, answer=answer, heading="Algebra - Exponents and Logarithms",
+                             question_type=question_type) if question_type in [0, 1] \
+                        else dict(value1=value1, answer=answer, question_type=question_type)
+
+        # Save this information in the session dictionary to reference once an answer is entered
+        session["currentDict"] = question_dict
+
+        return render_template("exponent1.html", question_dict=question_dict) if \
+            question_type == 0 else render_template("exponent2.html", question_dict=question_dict) \
+            if question_type == 1 else render_template("logarithm.html", question_dict=question_dict)

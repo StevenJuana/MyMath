@@ -227,7 +227,7 @@ def surface_area(problem_type):
             radius = randint(3, 10)
             answer = round((4 * math.pi * (radius**2)), 2)
 
-            question_dict = dict(radius=radius, answer=answer, heading="Geometry - Volume", problem_type=problem_type)
+            question_dict = dict(radius=radius, answer=answer, heading="Geometry - Surfaces", problem_type=problem_type)
             session["currentDict"] = question_dict
 
             return render_template("surfaceAreaSphere.html", question_dict=question_dict)

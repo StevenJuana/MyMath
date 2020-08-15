@@ -5,8 +5,8 @@
 
 from flask import Flask, redirect, url_for, render_template, flash, request, session
 from random import randint
-import calculations
 from conversions import conversion_dict, conversion_types
+import calculations
 
 # Dictionary that holds values used to generate problems
 dv = dict(Beginner=[1, 10], Intermediate=[-25, 300], Advanced=[-300, 1000])

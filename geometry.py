@@ -155,3 +155,80 @@ def volume(problem_type):
             session["currentDict"] = question_dict
 
             return render_template("volumeSphere.html", question_dict=question_dict)
+
+
+@geometry.route("/Geometry/SurfaceArea/<problem_type>", methods=['GET', 'POST'])
+def surface_area(problem_type):
+    # If the user has just entered an answer submission, check the validity and correctness
+    if request.method == 'POST':
+        # Check if a problem has been asked in this current session... if so, get its details
+        if "currentDict" in session:
+            question_dict = session["currentDict"]
+            given_answer = request.form["answer"]
+
+            # Check to see if the answer the user submitted is valid, then check its correctness and
+            # give the appropriate error message
+            if given_answer != None and given_answer != "":
+                if given_answer.isnumeric() or (given_answer.count(".") == 1 and
+                                                all([x.isnumeric() for x in given_answer.split(".")])):
+                    if float(given_answer) == session["currentDict"]['answer']:
+                        flash('Correct Answer!')
+                    else:
+                        flash('Incorrect, try again')
+                else:
+                    flash('Invalid Answer, Please Submit a Number')
+            else:
+                flash('Please Type Your Answer Above')
+
+        # Render the template show the screen shows the correct values
+        if session["currentDict"]["problem_type"] == "cube":
+            return render_template("surfaceAreaCube.html", question_dict=question_dict)
+        elif session["currentDict"]["problem_type"] == "cone":
+            return render_template("surfaceAreaCone.html", question_dict=question_dict)
+        elif session["currentDict"]["problem_type"] == "cylinder":
+            return render_template("surfaceAreaCylinder.html", question_dict=question_dict)
+        else:
+            return render_template("surfaceAreaSphere.html", question_dict=question_dict)
+
+    else:
+        if problem_type == "cube":
+            side = randint(2, 10)
+            answer = 6 * (side**2)
+
+            question_dict = dict(side=side, answer=answer,
+                                 heading="Geometry - Surfaces", problem_type=problem_type)
+            session["currentDict"] = question_dict
+
+            return render_template("surfaceAreaCube.html", question_dict=question_dict)
+
+        elif problem_type == "cone":
+            radius = randint(2, 7)
+            height = randint(9, 15)
+            answer = round(((math.pi * radius) * (radius + math.sqrt((height**2)*(radius**2)))), 2)
+
+            question_dict = dict(radius=radius, height=height, answer=answer,
+                                 heading="Geometry - Surfaces", problem_type=problem_type)
+            session["currentDict"] = question_dict
+
+            return render_template("surfaceAreaCone.html", question_dict=question_dict)
+
+        elif problem_type == "cylinder":
+            radius = randint(2, 10)
+            height = randint(10, 15)
+
+            answer = round(((2 * math.pi * radius * height) + (2 * math.pi * (radius**2))), 2)
+
+            question_dict = dict(radius=radius, height=height, answer=answer,
+                                 heading="Geometry - Surfaces", problem_type=problem_type)
+            session["currentDict"] = question_dict
+
+            return render_template("surfaceAreaCylinder.html", question_dict=question_dict)
+
+        elif problem_type == "sphere":
+            radius = randint(3, 10)
+            answer = round((4 * math.pi * (radius**2)), 2)
+
+            question_dict = dict(radius=radius, answer=answer, heading="Geometry - Volume", problem_type=problem_type)
+            session["currentDict"] = question_dict
+
+            return render_template("surfaceAreaSphere.html", question_dict=question_dict)

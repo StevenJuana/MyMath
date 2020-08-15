@@ -5,7 +5,7 @@ import math
 geometry = Blueprint("geometry", __name__, static_folder="static", template_folder="templates")
 
 
-@geometry.route("/Geometry/<problem_type>", methods=['GET', 'POST'])
+@geometry.route("/Geometry/Area/<problem_type>", methods=['GET', 'POST'])
 def area(problem_type):
     # If the user has just entered an answer submission, check the validity and correctness
     if request.method == 'POST':

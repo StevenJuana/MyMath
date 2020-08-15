@@ -1,3 +1,8 @@
+# calculations.py
+
+# This file contains functions that calculate answers for various
+# problems across our project
+
 from math import prod, sqrt
 from itertools import count, islice
 

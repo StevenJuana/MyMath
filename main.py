@@ -1,3 +1,8 @@
+# main.py
+
+# This is the main file for the project. This file contains the logic to route
+# to certain pages, as well as logic to generate and solve each problem.
+
 from flask import Flask, redirect, url_for, render_template, flash, request, session
 from random import randint
 import calculations

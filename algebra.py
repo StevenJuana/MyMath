@@ -74,7 +74,7 @@ def basic_single_var():
         variable = potential_vars[randint(0, len(potential_vars) - 1)]
 
         question_dict = dict(value1=value1, value2=value2, value3=value3, answer=answer, sign=sign,
-                             heading=f"Algebra -\nSingle Variable", variable=variable, problem_type=problem_type)
+                             heading=f"Algebra - Variables", variable=variable, problem_type=problem_type)
 
         # Save this information in the session dictionary to reference once an answer is entered
         session["currentDict"] = question_dict
@@ -168,7 +168,7 @@ def convert_units():
         answer = round(amt_unit1 * conversion_dict[unit1][unit2], 2)
 
         question_dict = dict(unit1=unit1, unit2=unit2, amt_unit1=amt_unit1, answer=answer,
-                             heading="Algebra - Unit Conversion")
+                             heading="Algebra - Units")
 
         # Save this information in the session dictionary to reference once an answer is entered
         session["currentDict"] = question_dict

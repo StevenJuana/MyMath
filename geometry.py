@@ -128,7 +128,7 @@ def volume(problem_type):
             height = randint(7, 12)
             width = randint(3, 6)
             length = randint(9, 15)
-            answer = round((length * width * height) / 3)
+            answer = round(((length * width * height) / 3), 2)
 
             question_dict = dict(height=height, width=width, length=length,
                                  answer=answer, heading="Geometry - Volume", problem_type=problem_type)

@@ -70,12 +70,14 @@
                
                     <div class="row">
                     <div class="col-lg-4 col-sm-6 mb-4">
-                    <div style="border-color: white;" class="card h-100">
-                         <a href="#"><img class="card-img-top" src="{{ url_for('static', filename='images/multiply.png') }}" alt=""></a>
-                         <div class="card-body">
+                    <div class="card h-100">
+                         <a href="#"><img class="card-img-top" src="{{ url_for('static', filename='images/addBack.png') }}" alt=""></a>
+                         <div style="text-align:center" class="card-body">
                          <h4 class="card-title">
                               <h2>Addition</h2>
                          </h4>
+                         </div>
+                         <div style="margin:auto">
                          <ul>
                               <li><a href="{{ url_for('add_sub_mult_problem', problem_type='Addition', difficulty='Beginner', num_numbers='2') }}">Beginner</a></li>
                               <li><a href="{{ url_for('add_sub_mult_problem', problem_type='Addition', difficulty='Intermediate', num_numbers='2') }}">Intermediate</a></li>
@@ -85,8 +87,8 @@
                     </div>
                     </div>
                     <div class="col-lg-4 col-sm-6 mb-4">
-                    <div style="border-color: white;" class="card h-100">
-                         <a href="#"><img class="card-img-top" src="{{ url_for('static', filename='images/multiplyBack2.png') }}" alt=""></a>
+                    <div class="card h-100">
+                         <a href="#"><img class="card-img-top" src="{{ url_for('static', filename='images/subtractBack.png') }}" alt=""></a>
                          <div style="text-align:center" class="card-body">
                          <h4 class="card-title">
                               <h2>Subtraction</h2>

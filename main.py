@@ -204,12 +204,16 @@ def basic_single_var():
 
         #print(value1, "x ", value3, " = ", value2, "x", "    x = ", answer)
 
+    potential_vars = ["x", "y", "z"]
+    variable = potential_vars[randint(0, len(potential_vars)-1)]
+
     question_dict = {"value1": value1,
                      "value2": value2,
                      "value3": value3,
                      "answer": answer,
                      "sign": sign,
-                     "heading": f"Algebra - Single Variable Equations"}
+                     "heading": f"Algebra - Single Variable Equations",
+                     "variable": variable}
 
     return render_template("algebraSingleVariable1.html", question_dict=question_dict) if problem_type in [0, 1] \
         else render_template("algebraSingleVariable2.html", question_dict=question_dict)

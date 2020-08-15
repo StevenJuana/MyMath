@@ -246,5 +246,45 @@ def basic_single_var():
             else render_template("algebraSingleVariable2.html", question_dict=question_dict)
 
 
+@app.route("BasicAlgebra/Inequalities")
+def inequalities():
+    # If the user has just entered an answer submission, check the validity and correctness
+    if request.method == 'POST':
+        # Check if a problem has been asked in this current session... if so, get its details
+        if "currentDict" in session:
+            question_dict = session["currentDict"]
+            given_answer = request.form["answer"]
+
+            # Check to see if the answer the user submitted is valid, then check its correctness and
+            # give the appropriate error message
+            if given_answer != None and given_answer != "":
+                if not given_answer.isnumeric():
+                    if given_answer == session["currentDict"]["answer"]:
+                        flash('Correct Answer!')
+                    else:
+                        flash('Incorrect, try again')
+                else:
+                    flash("Invalid Answer, Please Enter Either '>', '<', or '='")
+            else:
+                flash('Please Type Your Answer Above')
+
+        # Render the template show the screen shows the correct values
+        return render_template("algebraInequalities.html", question_dict=question_dict)
+
+    else:
+        value1 = randint(0, 1000)
+        value2 = randint(0, 1000)
+        answer = ">" if value1 > value2 else "<" if value1 < value2 else "="
+
+        question_dict = {"value1": value1,
+                         "value2": value2,
+                         "answer": answer,
+                         "heading": "Algebra - Inequalities"}
+        # Save this information in the session dictionary to reference once an answer is entered
+        session["currentDict"] = question_dict
+
+        return render_template("algebraInequalities.html", question_dict=question_dict)
+
+
 if __name__ == "__main__":
     app.run(debug=True)

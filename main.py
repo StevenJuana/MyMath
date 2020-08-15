@@ -294,9 +294,24 @@ def inequalities():
 def convert_units():
     # If the user has just entered an answer submission, check the validity and correctness
     if request.method == 'POST':
-        question_dict = session["currentDict"]
-        
-        post_flash()
+        # Check if a problem has been asked in this current session... if so, get its details
+        if "currentDict" in session:
+            question_dict = session["currentDict"]
+            given_answer = request.form["answer"]
+
+            # Check to see if the answer the user submitted is valid, then check its correctness and
+            # give the appropriate error message
+            if given_answer != None and given_answer != "":
+                if given_answer.isnumeric() or (given_answer.count(".") == 1 and
+                                                all([x.isnumeric() for x in given_answer.split(".")])):
+                    if int(given_answer) == session["currentDict"]['answer']:
+                        flash('Correct Answer!')
+                    else:
+                        flash('Incorrect, try again')
+                else:
+                    flash('Invalid Answer, Please Submit a Number')
+            else:
+                flash('Please Type Your Answer Above')
 
         # Render the template show the screen shows the correct values
         return render_template("algebraConversions.html", question_dict=question_dict)

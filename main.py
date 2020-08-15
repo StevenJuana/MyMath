@@ -271,29 +271,56 @@ def inequalities():
 
 @app.route("/BasicAlgebra/Units", methods=['GET', 'POST'])
 def convert_units():
-    type_units = list(conversion_types.keys())[randint(0, 2)]
+    # If the user has just entered an answer submission, check the validity and correctness
+    if request.method == 'POST':
+        # Check if a problem has been asked in this current session... if so, get its details
+        if "currentDict" in session:
+            question_dict = session["currentDict"]
+            given_answer = request.form["answer"]
 
-    unit1 = conversion_types[type_units][randint(0, 3)]
+            # Check to see if the answer the user submitted is valid, then check its correctness and
+            # give the appropriate error message
+            if given_answer != None and given_answer != "":
+                if given_answer.isnumeric():
+                    if int(given_answer) == session["currentDict"]["answer"]:
+                        flash('Correct Answer!')
+                    else:
+                        flash('Incorrect, try again')
+                else:
+                    flash('Invalid Answer, Please Submit a Number')
+            else:
+                flash('Please Type Your Answer Above')
 
-    unit2 = conversion_types[type_units][randint(0, 3)]
-    while unit2 == unit1:
-        unit2 = conversion_types[type_units][randint(0, 3)]
+        # Render the template show the screen shows the correct values
+        return render_template("algebraConversions.html", question_dict=question_dict)
 
-    if unit1 == "feet" or unit1 == "inch":
-        amt_unit1 = randint(1000, 2000)
-    elif unit1 == "gram":
-        amt_unit1 = randint(500, 1000)
-    elif unit1 == "kilometers":
-        amt_unit1 = randint(2, 5)
     else:
-        amt_unit1 = randint(50, 100)
+        type_units = list(conversion_types.keys())[randint(0, 2)]
 
-    answer = round(amt_unit1 * conversion_dict[unit1][unit2], 2)
+        unit1 = conversion_types[type_units][randint(0, 3)]
 
-    question_dict = dict(unit1=unit1, unit2=unit2, amt_unit1=amt_unit1, answer=answer,
-                         heading="Algebra - Unit Conversion")
+        unit2 = conversion_types[type_units][randint(0, 3)]
+        while unit2 == unit1:
+            unit2 = conversion_types[type_units][randint(0, 3)]
 
-    return render_template("algebraConversions.html", question_dict=question_dict)
+        if unit1 == "feet" or unit1 == "inch":
+            amt_unit1 = randint(1000, 2000)
+        elif unit1 == "gram":
+            amt_unit1 = randint(500, 1000)
+        elif unit1 == "kilometers":
+            amt_unit1 = randint(2, 5)
+        else:
+            amt_unit1 = randint(50, 100)
+
+        answer = round(amt_unit1 * conversion_dict[unit1][unit2], 2)
+
+        question_dict = dict(unit1=unit1, unit2=unit2, amt_unit1=amt_unit1, answer=answer,
+                             heading="Algebra - Unit Conversion")
+
+        # Save this information in the session dictionary to reference once an answer is entered
+        session["currentDict"] = question_dict
+
+        return render_template("algebraConversions.html", question_dict=question_dict)
 
 
 if __name__ == "__main__":

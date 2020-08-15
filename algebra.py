@@ -176,7 +176,7 @@ def convert_units():
         return render_template("algebraConversions.html", question_dict=question_dict)
 
 
-@algebra.route("/BasicAlgebra/ExponentsAndLogarithms")
+@algebra.route("/BasicAlgebra/ExponentsAndLogarithms", methods=['GET', 'POST'])
 def exponents_logs():
     # If the user has just entered an answer submission, check the validity and correctness
     if request.method == 'POST':

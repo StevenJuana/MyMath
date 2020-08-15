@@ -231,3 +231,55 @@ def surface_area(problem_type):
             session["currentDict"] = question_dict
 
             return render_template("surfaceAreaSphere.html", question_dict=question_dict)
+
+
+@geometry.route("/Geometry/CircleProperties/<problem_type>", methods=['GET', 'POST'])
+def circle_properties(problem_type):
+    # If the user has just entered an answer submission, check the validity and correctness
+    if request.method == 'POST':
+        # Check if a problem has been asked in this current session... if so, get its details
+        if "currentDict" in session:
+            question_dict = session["currentDict"]
+            given_answer = request.form["answer"]
+
+            # Check to see if the answer the user submitted is valid, then check its correctness and
+            # give the appropriate error message
+            if given_answer != None and given_answer != "":
+                if given_answer.isnumeric() or (given_answer.count(".") == 1 and
+                                                all([x.isnumeric() for x in given_answer.split(".")])):
+                    if float(given_answer) == session["currentDict"]['answer']:
+                        flash('Correct Answer!')
+                    else:
+                        flash('Incorrect, try again')
+                else:
+                    flash('Invalid Answer, Please Submit a Number')
+            else:
+                flash('Please Type Your Answer Above')
+
+        # Render the template show the screen shows the correct values
+        if session["currentDict"]["problem_type"] == "circumference":
+            return render_template("circumference.html", question_dict=question_dict)
+        else:
+            return render_template("diameter.html", question_dict=question_dict)
+
+    else:
+        if problem_type == "diameter":
+            radius = randint(2, 15)
+            answer = radius * 2
+
+            question_dict = dict(radius=radius, answer=answer,
+                                 heading="Geometry - Circles", problem_type=problem_type)
+            session["currentDict"] = question_dict
+
+            return render_template("diameter.html", question_dict=question_dict)
+
+        elif problem_type == "circumference":
+            radius = randint(2, 10)
+            answer = 2 * radius * math.pi
+
+            question_dict = dict(radius=radius, answer=answer,
+                                 heading="Geometry - Circles", problem_type=problem_type)
+            session["currentDict"] = question_dict
+
+            return render_template("circumference.html", question_dict=question_dict)
+

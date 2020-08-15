@@ -11,7 +11,7 @@ def area(problem_type):
         height = randint(2, 8)
         answer = ((base * height) / 2)
 
-        question_dict = dict(base=base, height=height, answer=answer)
+        question_dict = dict(base=base, height=height, answer=answer, heading="Geometry - Triangle")
         session["currentDict"] = question_dict
 
         return render_template("triangle.html", question_dict=question_dict)

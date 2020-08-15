@@ -87,10 +87,12 @@
                     <div class="col-lg-4 col-sm-6 mb-4">
                     <div style="border-color: white;" class="card h-100">
                          <a href="#"><img class="card-img-top" src="{{ url_for('static', filename='images/multiplyBack2.png') }}" alt=""></a>
-                         <div class="card-body">
+                         <div style="text-align:center" class="card-body">
                          <h4 class="card-title">
                               <h2>Subtraction</h2>
                          </h4>
+                         </div>
+                         <div style="margin:auto">
                         <ul>
                              <li><a href ="{{ url_for('add_sub_mult_problem', problem_type='Subtraction', difficulty='Beginner', num_numbers='2') }}">Beginner</a></li>
                              <li><a href ="{{ url_for('add_sub_mult_problem', problem_type='Subtraction', difficulty='Intermediate', num_numbers='2') }}">Intermediate</a></li>
@@ -117,12 +119,14 @@
                     </div>
                     </div>
                     <div class="col-lg-4 col-sm-6 mb-4">
-                    <div style="border-color: white;" class="card h-100">
-                         <a href="#"><img class="card-img-top" src="{{ url_for('static', filename='images/multiply.png') }}" alt=""></a>
-                         <div class="card-body">
+                    <div class="card h-100">
+                         <a href="#"><img class="card-img-top" src="{{ url_for('static', filename='images/divisionBack.png') }}" alt=""></a>
+                         <div style="text-align:center" class="card-body">
                          <h4 class="card-title">
                               <h2>Division</h2>
                          </h4>
+                         </div>
+                         <div style="margin:auto">
                          <ul>
                               <li><a href = "{{ url_for('division_problem', difficulty='Beginner') }}">Beginner</a></li>
                               <li><a href = "{{ url_for('division_problem', difficulty='Intermediate') }}">Intermediate</a></li>
@@ -132,42 +136,37 @@
                     </div>
                     </div>
                     <div class="col-lg-4 col-sm-6 mb-4">
-                    <div style="border-color: white;" class="card h-100">
-                         <a href="#"><img class="card-img-top" src="{{ url_for('static', filename='images/multiply.png') }}" alt=""></a>
-                         <div class="card-body">
-                         <h4 class="card-title">
-                              <h2>Exponents and Logarithms</h2>
-                         </h4>
-                         <ul>
-                              <li><a href = "#">Basics</a></li>
-                         </ul>
+                    <div class="card h-100">
+                         <a href="#"><img class="card-img-top" src="{{ url_for('static', filename='images/multiplyBack2.png') }}" alt=""></a>
+                         <div style="text-align:center" class="card-body">
+                              <h4 class="card-title">
+                                   <h2>Basic Algebra</h2>
+                              </h4>
                          </div>
+                         <div style="margin:auto">
+                              <ul style="float: left;">
+                                   <li><a href = "#">Single Variable</a></li>
+                                   <li><a href = "#">Sys. Equations</a></li>
+                                   <li><a href = "#">Inequalities</a></li>
+                              </ul>
+                              <ul style="float: right;">
+                                   <li><a href = "#">Quad. Formula</a></li>
+                                   <li><a href = "#">Unit Conversion</a></li>
+                                   <li><a href = "#">Exponents, Logs</a></li>
+                              </ul>
+                         </div>
+                         
                     </div>
                     </div>
                     <div class="col-lg-4 col-sm-6 mb-4">
-                    <div style="border-color: white;" class="card h-100">
+                    <div class="card h-100">
                          <a href="#"><img class="card-img-top" src="{{ url_for('static', filename='images/multiply.png') }}" alt=""></a>
-                         <div class="card-body">
-                         <h4 class="card-title">
-                              <h2>Basic Algebra</h2>
-                         </h4>
-                         <ul>
-                              <li><a href = "#">Basic Single Variable Equations</a></li>
-                              <li><a href = "#">System of Equations</a></li>
-                              <li><a href = "#">Inequalities</a></li>
-                              <li><a href = "#">Quadratic Formula</a></li>
-                              <li><a href = "#">Converting Units</a></li>
-                         </ul>
-                         </div>
-                    </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 mb-4">
-                    <div style="border-color: white;" class="card h-100">
-                         <a href="#"><img class="card-img-top" src="{{ url_for('static', filename='images/multiply.png') }}" alt=""></a>
-                         <div class="card-body">
+                         <div style="text-align:center" class="card-body">
                          <h4 class="card-title">
                               <h2>Geometry</h2>
                          </h4>
+                         </div>
+                         <div style="margin:auto">
                          <ul>
                               <li><a href = "#">Area</a></li>
                               <li><a href = "#">Volume</a></li>

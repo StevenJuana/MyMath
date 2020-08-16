@@ -21,9 +21,6 @@ app.register_blueprint(division, url_prefix="")
 app.register_blueprint(algebra, url_prefix="")
 app.register_blueprint(geometry, url_prefix="")
 
-# Creates a secret key for the program
-app.secret_key = "GarudaHacks4Ever"
-
 
 @app.route("/")
 def home():

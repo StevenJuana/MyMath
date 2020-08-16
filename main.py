@@ -1,7 +1,8 @@
 # main.py
 
 # This is the main file for the project. This file contains the logic to route
-# to certain pages, as well as logic to generate and solve each problem.
+# to the home page, as well as establishes all of the Blueprints for the other
+# pages in the project
 
 from flask import Flask, render_template
 

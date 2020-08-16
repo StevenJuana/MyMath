@@ -1,8 +1,16 @@
+# algebra.py
+
+# This module contains all of the backend and routing for any algebra
+# questions on MyMath. These include single variable equations,
+# inequalities, unit conversions and exponents/logarithms
+
+
 from flask import render_template, flash, request, session, Blueprint
 from random import randint
 from conversions import conversion_dict, conversion_types
 import calculations
 
+# Create a Blueprint for the "algebra.py" module
 algebra = Blueprint("algebra", __name__, static_folder="static", template_folder="templates")
 
 
@@ -269,6 +277,7 @@ def exponents_logs():
         # Choose a question type, where 0-1 is exponent questions and 2 is a log question
         question_type = randint(0, 2)
 
+        # Set up the values for an exponent question, just random numbers
         if question_type == 0:
             value1, value2 = randint(1, 10), randint(1, 3)
             answer = value1 ** value2
@@ -277,9 +286,11 @@ def exponents_logs():
             value1, answer = randint(1, 10), randint(1, 3)
             value2 = value1 ** answer
 
+        # Set up the values for a logarithm question, just random numbers
         else:
             value1, answer = randint(2, 10), randint(2, 15)
 
+        # Save all of the relevant information in a dictionary to pass through to the HTML file
         question_dict = dict(value1=value1, value2=value2, answer=answer, heading="Algebra - Exp/Logs",
                              question_type=question_type) if question_type in [0, 1] else \
                         dict(value1=value1, answer=answer, heading="Algebra - Exp/Logs", question_type=question_type)
@@ -287,6 +298,7 @@ def exponents_logs():
         # Save this information in the session dictionary to reference once an answer is entered
         session["currentDict"] = question_dict
 
+        # Render the appropriate HTML template to display the problem
         return render_template("exponent1.html", question_dict=question_dict) if \
             question_type == 0 else render_template("exponent2.html", question_dict=question_dict) \
             if question_type == 1 else render_template("logarithm.html", question_dict=question_dict)

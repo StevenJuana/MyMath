@@ -1,7 +1,14 @@
+# addSubMult.py
+
+# This module contains all of the backend and routing for the
+# addition, subtraction and multiplication problems for the
+# program
+
 from flask import render_template, flash, request, session, Blueprint
 from random import randint
 import calculations
 
+# Create a Blueprint for the "addSubMult.py" module
 addSubMult = Blueprint("addSubMult", __name__, static_folder="static", template_folder="templates")
 
 

@@ -1,7 +1,13 @@
+# division.py
+
+# This module contains all of the backend and routing for the
+# division problems for the program
+
 from flask import render_template, flash, request, session, Blueprint
 from random import randint
 import calculations
 
+# Create a Blueprint for the "division.py" module
 division = Blueprint("division", __name__, static_folder="static", template_folder="templates")
 
 
